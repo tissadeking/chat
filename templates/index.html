@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Interface</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <!--<link rel="stylesheet" href="styles.css">-->
+    <link href="{{ url_for('static', filename='/css/styles.css') }}" rel="stylesheet">
+    <!-- Latest compiled and minified Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<!--<body style="background-color: lightblue">-->
+<body>
+    <div class="chat-container">
+        <div class="head_box">
+            <h3>Chat Interface for Info Retrieval from Custom Datasets</h3>
+        </div>
+        <div class="chat-box" id="chat-box"></div>
+        <div class="input-area">
+            <input type="text" id="user_input" name="user_input" placeholder="Enter your query..." autocomplete="off">
+            <button class="send" onclick="sendMessage()">Send</button>
+            <!-- Call Button -->
+            <!--<button id="call-btn">📞 Call</button>-->
+
+            <!-- Voice Note Button -->
+            <!--<button id="voice-note-btn">🎤 Record</button>
+            <audio id="audio-playback" controls style="display:none;"></audio>-->
+
+            <!--<button id="startCall">Call</button>
+            <button id="recordVoice">Record</button>
+
+            <p id="transcription"></p>
+            <audio id="audioResponse" controls></audio>-->
+        </div>
+        <!--<div>-->
+            <!--<h3>Record your voice</h3>
+            <br>-->
+            <!--<button onclick="sendMessage()">Send</button>-->
+            <!--<p>Convert recorded audio to wav:</p>
+            <select id="encodingTypeSelect">
+              <option value="wav">Waveform Audio (.wav)</option>
+            </select>-->
+        <div id="controls">
+            <button class="records" id="recordButton">Record Voice Query</button>
+            <button class="records" id="stopButton" disabled>Stop Recording</button>
+        </div>
+            <!-- Call Button -->
+            <!--<button id="call-btn">📞 Call</button>-->
+
+            <!-- Voice Note Button -->
+            <!--<button id="voice-note-btn">🎤 Record</button>
+            <audio id="audio-playback" controls style="display:none;"></audio>-->
+
+            <!--<button id="startCall">Call</button>
+            <button id="recordVoice">Record</button>
+
+            <p id="transcription"></p>
+            <audio id="audioResponse" controls></audio>-->
+        <!--</div>-->
+        <!--<div id="speechTranscriptContainer">
+            <h1>Results</h1>
+            <p id="speechText">{{ transcript }}</p>
+        </div>-->
+        <!--<div>
+            <h3>Bot:</h3>
+            <p id="response"></p>
+        </div>-->
+    </div>
+
+    <!--<script src="script.js"></script>-->
+    <script src="../static/js/script.js"></script>
+    <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
+    <script src="../static/js/WebAudioRecorder.min.js"></script>
+    <!--<script>
+                // Simple response logic for the chatbot
+        function sendMessage() {
+            const user_input = document.getElementById('user_input').value;
+            if (user_input.trim() !== "") {
+                appendMessage('user', user_input);
+                document.getElementById('user_input').value = ''; // Clear input field
+                document.getElementById('user_input').focus(); // Focus back on input
+
+                // Simulate bot response
+                //setTimeout(() => {
+                //    const botResponse = generateBotResponse(userInput);
+                //    appendMessage('bot', botResponse);
+                //}, 1000);
+                /*fetch('/get_response', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: `user_input=${user_input}`
+                })
+                .then(response => response.text())
+                .then(data => {
+                    //document.getElementById('response').innerText = data;
+                    document.getElementById('response').innerHTML = `${data.response}`;
+                    //appendMessage('bot', data);
+                });*/
+                const response = fetch('http://127.0.0.1:5002/get_response');
+                response.then(function(result) {
+                    // here you can use the result of promiseB
+                    console.log("res:", result);
+                });
+                //console.log("res:", response);
+                //const data = response.json();
+                const data = response;
+                //document.getElementById('response').innerHTML = `Python says: ${data.message}`;
+                document.getElementById('response').innerText = data;
+                /*fetch(`http://localhost:5002/get_response?userInput=${userInput}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('result').innerHTML = `Factorial: ${data.response}`;
+                    })
+                .catch(error => console.error('Error:', error));*/
+                //document.getElementById('user_input').value = ''; // Clear input field
+                //document.getElementById('user_input').focus(); // Focus back on input
+            }
+        }
+
+        // Append message to the chat box
+        function appendMessage(sender, message) {
+            const chatBox = document.getElementById('chat-box');
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('chat-message', sender);
+            messageElement.innerHTML = `<div class="message-text">${message}</div>`;
+            chatBox.appendChild(messageElement);
+
+            // Scroll to the bottom of the chat box
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Generate a simple bot response
+        function generateBotResponse(userMessage) {
+            const lowerCaseMessage = userMessage.toLowerCase();
+
+            if (lowerCaseMessage.includes('hello') || lowerCaseMessage.includes('hi')) {
+                return 'Hello! How can I help you today?';
+            } else if (lowerCaseMessage.includes('bye')) {
+                return 'Goodbye! Have a great day!';
+            } else {
+                return 'I am not sure how to respond to that. Can you ask something else?';
+            }
+        }
+
+        // Optional: Allow user to press Enter to send the message
+        document.getElementById('user_input').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+
+    </script>-->
+</body>
+</html>
