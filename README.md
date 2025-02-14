@@ -19,6 +19,6 @@ It also recommends suitable LLMs for processing user queries based on user-defin
     pip install -r requirements.txt
     python3 chat_flask.py
     ```
-# Accessing the chat interface
+## Accessing the chat interface
 - The software becomes available at http://127.0.0.1:5002.
 
