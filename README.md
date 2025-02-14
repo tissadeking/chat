@@ -1,4 +1,4 @@
-# Information Retrieval Software for Data Lifecycle Management
+# Intent-based Information Retrieval Software for Data Lifecycle Management
 
 This software is part of the modules of a project. 
 The functionalities of the software include providing users with a chat interface through which they can query custom datasets in defined domains and not in the internet.
