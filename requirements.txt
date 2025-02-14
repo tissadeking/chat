@@ -1,0 +1,8 @@
+pandas
+llama_index.llms.groq
+Flask
+nltk
+SpeechRecognition
+pymupdf
+python-docx
+langchain-openai
