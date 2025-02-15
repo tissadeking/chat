@@ -24,3 +24,5 @@ The focus of the research is the analysis and recommendation of the models with 
 ## Accessing the chat interface
 - The software becomes available at http://127.0.0.1:5002.
 
+## Software Architecture
+![Alt text](chat_info_retrieval.pdf)
