@@ -26,3 +26,5 @@ The focus of the research is the analysis and recommendation of the models with 
 
 ## Software Architecture
 ![Alt text](chat_info_retrieval.pdf)
+<img src="chat_info_retrieval.pdf" alt="Description" width="400">
+
