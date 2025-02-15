@@ -1,13 +1,12 @@
-import csv
-import os
-
-from tf_idf_method import main_tf_idf
+#import csv
+#import os
+#from tf_idf_method import main_tf_idf
 from llam3_8 import llm_query_fun_3_8
 from llam3_70 import llm_query_fun_3_70
 from mixtral_groq import llm_query_fun_mixtral
 from gemma2_groq import llm_query_fun_gemma2
-import time
-import tracemalloc
+#import time
+#import tracemalloc
 
 #use_case = 'GREEN DEAL'
 print("Welcome to the dataset info retrieval tool!")
@@ -25,14 +24,14 @@ def start_fun(user_query, use_case):
     #if user_query.lower() == "exit":
     #    print("Goodbye!")
     #    break
-    global answer_main
+    global answer
     columns = ['use_case', 'time', 'memory', 'query', 'answer', 'length']
     #get answer from the dataset
     for model in models:
-        answer = ''
-        data_dict = {}
-        tracemalloc.start()
-        start = time.time()
+        #answer = ''
+        #data_dict = {}
+        #tracemalloc.start()
+        #start = time.time()
         '''if model == 'tf_idf_method':
             answer = main_tf_idf(user_query)
         if model == 'knl_graph':
@@ -47,7 +46,7 @@ def start_fun(user_query, use_case):
         if model == 'llama-3.3-70b':
             answer = llm_query_fun_3_70(user_query)
 
-        end = time.time()
+        '''end = time.time()
         current_usage, peak_usage = tracemalloc.get_traced_memory()
         tracemalloc.stop()
         file_name = model + '.csv'
@@ -59,7 +58,7 @@ def start_fun(user_query, use_case):
         answer_main = answer
         answer = answer.replace(' ', '')
         data_dict['length'] = len(answer)
-        '''print('data dict: ', data_dict)
+        print('data dict: ', data_dict)
         if os.path.exists(file_name) == True:
             with open(file_name, 'a') as csvfile:
                 writer = csv.DictWriter(csvfile, fieldnames=columns)
@@ -69,4 +68,4 @@ def start_fun(user_query, use_case):
                 writer = csv.DictWriter(csvfile, fieldnames=columns)
                 writer.writeheader()
                 writer.writerow(data_dict)'''
-    return answer_main
+    return answer

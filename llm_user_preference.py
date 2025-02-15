@@ -1,17 +1,17 @@
 import dotenv
 import json
-import os
-from aiohttp import web
+#import os
+#from aiohttp import web
 from llama_index.llms.groq import Groq
-from typing import Optional, List
-from langchain_core.pydantic_v1 import BaseModel, Field
-from llama_index.core.program import LLMTextCompletionProgram, FunctionCallingProgram
-from llama_index.core.output_parsers import PydanticOutputParser
-from pydantic import TypeAdapter
-from data_harmonise import data_harmonise_fun
+#from typing import Optional, List
+#from langchain_core.pydantic_v1 import BaseModel, Field
+#from llama_index.core.program import LLMTextCompletionProgram, FunctionCallingProgram
+#from llama_index.core.output_parsers import PydanticOutputParser
+#from pydantic import TypeAdapter
+#from data_harmonise import data_harmonise_fun
 
 def llm_preference_fun(ask):
-    dotenv.load_dotenv(dotenv.find_dotenv())
+    #dotenv.load_dotenv(dotenv.find_dotenv())
     groq_api_key = "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"
     llama3 = Groq(model="llama3-8b-8192", api_key=groq_api_key, temperature=0.0)
 

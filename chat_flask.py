@@ -1,11 +1,12 @@
 import io
-import pyttsx3
 from flask import Flask, render_template, request, jsonify, send_file
+import data_preprocessor
 from llm_user_preference import llm_preference_fun
 from select_model import select_model_fun
 from rate_models import rate_models_fun
 from start_2_old import start_fun
-import nltk, os, re, json, whisper, soundfile as sf
+#from data_preprocessor import retrieve
+import nltk, os, re
 import speech_recognition as sr
 
 nltk.download('punkt_tab')
@@ -16,6 +17,7 @@ rating_store = 'model_ratings.csv'
 if (os.path.exists(rating_store) and os.path.isfile(rating_store)):
     os.remove(rating_store)
 rate_models_fun()
+#retrieve()
 
 use_case = 'GREEN DEAL'
 app = Flask(__name__, static_folder="static")
