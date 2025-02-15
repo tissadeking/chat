@@ -25,6 +25,6 @@ The focus of the research is the analysis and recommendation of the models with 
 - The software becomes available at http://127.0.0.1:5002.
 
 ## Software Architecture
-![Alt text](chat_info_retrieval.pdf)
+![Description of Image](chat_info_retrieval.pdf)
 <img src="chat_info_retrieval.pdf" alt="Description" width="400">
 
