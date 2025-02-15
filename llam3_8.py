@@ -1,9 +1,4 @@
-#import pandas as pd
-#from llama_index.llms.groq import Groq
 from langchain_openai import ChatOpenAI
-#import fitz, os
-#import openai
-#from docx import Document
 
 #initialize model
 groq_api_key = "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"  # Replace with your Groq API key
