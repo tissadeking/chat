@@ -1,14 +1,16 @@
 import io
 from flask import Flask, render_template, request, jsonify, send_file
-import data_preprocessor
+#import data_preprocessor
 from llm_user_preference import llm_preference_fun
 from select_model import select_model_fun
 from rate_models import rate_models_fun
-from start_2_old import start_fun
+from start_2 import start_fun
+import retriever_script
 #from data_preprocessor import retrieve
 import nltk, os, re
 import speech_recognition as sr
 
+os.environ["TOKENIZERS_PARALLELISM"] = "true"
 nltk.download('punkt_tab')
 nltk.download('wordnet')
 nltk.download('omw-1.4')

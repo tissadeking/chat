@@ -1,8 +1,11 @@
 pandas
-llama_index.llms.groq
+llama_index
+groq
 Flask
 nltk
 SpeechRecognition
 pymupdf
 python-docx
 langchain-openai
+
+
