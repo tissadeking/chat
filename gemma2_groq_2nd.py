@@ -1,8 +1,9 @@
 from langchain_openai import ChatOpenAI
 import pickle
+import config
 
 #initialize model
-groq_api_key = "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"  
+groq_api_key = config.groq_api_key  
 llama3 = ChatOpenAI(api_key=groq_api_key,
                     base_url="https://api.groq.com/openai/v1",
                     model="gemma2-9b-it",

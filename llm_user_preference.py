@@ -1,9 +1,10 @@
 import json
 from llama_index.llms.groq import Groq
+import config
 
+groq_api_key = config.groq_api_key
 
 def llm_preference_fun(ask):
-    groq_api_key = "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"
     llama3 = Groq(model="llama3-8b-8192", api_key=groq_api_key, temperature=0.0)
 
     examples = """Respond only with valid JSON. Do not write an introduction or summary. 
